@@ -36,13 +36,13 @@ Then, using the (Raspberry Pi Imager)[https://www.raspberrypi.com/software/], se
 
 Next, select your SD Card which you wish to write the operating system onto.  Make sure you select the correct device and don't accidentally overwrite something important!
 
-![rpi-imager](/assets/posts/20220608/rpi_imager.png)
+![rpi-imager](/assets/posts/20220609/rpi_imager.png)
 
 As an optional step, you can configure additonal settings on the Pi, by hitting CTRL+SHIFT+X on your keyboard.  This will bring up an "Advanced options" tab which can allow you to configure SSH, usernames/passwords, and even Wi-Fi.  I recommend using a wired Ethernet connection to ensure you don't run into any problems in later stages of this tutorial, but there's no harm in using Wi-Fi.
 
 For my configuration, I enabled SSH and left the default username and password combo (`pi:raspberry`) as well as setting the hostname to `nas`.
 
-![advanced-options](/assets/posts/20220608/advanced_options.png)
+![advanced-options](/assets/posts/20220609/advanced_options.png)
 
 Once you have finished, click "Write" and accept the prompt.
 
@@ -80,15 +80,15 @@ This grabs an install script from GitHub and then runs it with `bash`.  This may
 
 On your web browser of choice, navigate to the IP address of your Pi.  This will bring you to a login page for OpenMediaVault.
 
-![login-page](/assets/posts/20220608/login_page.png)
+![login-page](/assets/posts/20220609/login_page.png)
 
 By default, the username:password combination is `admin:openmediavault`.  Once logged in, you will see a layout similar to the one shown below:
 
-![dashboard](/assets/posts/20220608/dashboard.png)
+![dashboard](/assets/posts/20220609/dashboard.png)
 
 After I logged in, I immediately changed the default password.  To do this, click the settings icon on the top-right of the dashboard, and click **Change Password**.
 
-![change-password](/assets/posts/20220608/change_password.png)
+![change-password](/assets/posts/20220609/change_password.png)
 
 Once you have entered in a new password, click **Save**.  Note, you may have to log back in after you save the new password.
 
@@ -96,39 +96,39 @@ Once you have entered in a new password, click **Save**.  Note, you may have to 
 
 Firstly, make sure you plug your external storage into your Pi.  Then, on the OpenMediaVault webpage, click on **Disks** within the side-bar to view your available storage devices.  Your device should appear as shown:
 
-![disks](/assets/posts/20220608/disks.png)
+![disks](/assets/posts/20220609/disks.png)
 
 You may also notice that your SD Card also appears - in my case that's `/dev/mmcblk0`.  In theory, you could just use the SD Card as storage, but this is likely going to be very limiting, so you're better off using some sort of external hard drive or SSD.
 
 To configure your external storage as a file system, first click on **File Systems** within the side-bar, and then select **Create** from the small plus icon as shown:
 
-![create-file-system](/assets/posts/20220608/create_file_system.png)
+![create-file-system](/assets/posts/20220609/create_file_system.png)
 
 Then, select your device from the drop-down menu, and click **Save**.  Don't worry if this produces an error, just try again.
 
-![select-device](/assets/posts/20220608/select_device.png)
+![select-device](/assets/posts/20220609/select_device.png)
 
 Once this is done, click **Close**.
 
 Now you need to mount this new file system.  As before, within **File Systems**, click **Mount** from the small plus icon.
 
-![mount-file-system](/assets/posts/20220608/mount_file_system.png)
+![mount-file-system](/assets/posts/20220609/mount_file_system.png)
 
 Then, select your newly created file system from the drop-down menu, click **Save** and accept the prompt.
 
-![select-mount-device](/assets/posts/20220608/select_mount_device.png)
+![select-mount-device](/assets/posts/20220609/select_mount_device.png)
 
 Before you continue, you must apply the changes by clicking the check mark at the top-right of the dashboard.
 
 Now that you have the file system mounted on the Pi, you need to create a shared folder.  To do this, click on **Shared Folders** under **Storage** within the side-bar.  Click the small plus icon, provide a name for the folder, and select your external storage device.
 
-![shared-folder-config](/assets/posts/20220608/shared_folder_config.png)
+![shared-folder-config](/assets/posts/20220609/shared_folder_config.png)
 
 You can play around with the permissions if you like, but I'm going to leave them default for now.
 
 You should now have a shared folder similar to the one shown below:
 
-![new-shared-folder](/assets/posts/20220608/new_shared_folder.png)
+![new-shared-folder](/assets/posts/20220609/new_shared_folder.png)
 
 Now that you have successfully configured your storage, click the check mark at the top-right of the webpage and accept the prompt to apply the changes.
 
@@ -140,11 +140,11 @@ There are many ways you can access your new NAS.  However, the main two I will c
 
 To enable SMB, click on **SMB/CIFS** under **Services**.  Then, click on **Settings** and toggle the checkbox as shown below.
 
-![smb-enable](/assets/posts/20220608/smb_enable.png)
+![smb-enable](/assets/posts/20220609/smb_enable.png)
 
 Once you've enabled SMB, scroll down and hit the **Save** button.  Now, click on **Shares** and add the shared folder you created previously:
 
-![smb-share](/assets/posts/20220608/smb_share.png)
+![smb-share](/assets/posts/20220609/smb_share.png)
 
 Once again, scroll down and hit **Save** and apply your changes using the check mark at the top-right of the dashboard.
 
@@ -152,15 +152,15 @@ Now that you've got this configured, you need to actually access your NAS.  You 
 
 Firstly, if you're on Windows, open up your file explorer and go to **This PC**.  From there, right-click and hit **Add a network location**.
 
-![add-network-location](/assets/posts/20220608/add_network_location.png)
+![add-network-location](/assets/posts/20220609/add_network_location.png)
 
 Then, click **Next** and select **Choose a custom network location**, and click **Next**.  Next, you want to type in the location of your NAS (its IP address), followed by the name of the share, in the format shown below:
 
-![nas-address-smb](/assets/posts/20220608/nas_address_smb.png)
+![nas-address-smb](/assets/posts/20220609/nas_address_smb.png)
 
 Then, click **Next** and provide a username and password for authentication - if you're using the default, the credentials will be `pi:raspberry`.  Finally, provide a name for the NAS.  Now you should be able to access the NAS as you would any other drive.
 
-![nas-on-windows](/assets/posts/20220608/nas_on_windows.png)
+![nas-on-windows](/assets/posts/20220609/nas_on_windows.png)
 
 For the Linux users, you can access the NAS using `smbclient`.  This tool comes pre-installed on Kali Linux, but you may have to install it if you're using other distributions:
 
@@ -178,11 +178,11 @@ $ smbclient \\\\<ip_address>\\<share_name>
 
 Similarly, to enable NFS, click **NFS** under **Storage**.  Click on **Settings** and toggle the checkbox as shown:
 
-![nfs-enable](/assets/posts/20220608/nfs_enable.png)
+![nfs-enable](/assets/posts/20220609/nfs_enable.png)
 
 Again, hit the **Save** button and navigate to the **Shares** tab.  Click on the small plus icon and select your shared folder.  You then need to supply an IP address range for the clients which are allowed to mount your file system.  To find this, run `ip a` on your Linux machine.  I would also recommend changing the privileges to **Read/Write** as shown:
 
-![nfs-config](/assets/posts/20220608/nfs_config.png)
+![nfs-config](/assets/posts/20220609/nfs_config.png)
 
 Once this is all configured, hit **Save** and apply your changes using the check mark at the top-right of the dashboard.
 
