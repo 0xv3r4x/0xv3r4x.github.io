@@ -16,36 +16,36 @@ lang: en
 prefer_datetime_locale:
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone:
+timezone: Europe/London
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy                          # the main title
+title: v3r4x                           # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: semper vigilat                # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+  Welcome to my site.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://0xv3r4x.github.io'
 
 github:
-  username: github_username             # change to your github username
+  username: 0xV3R4X             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: 0xv3r4x             # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
+  name: v3r4x
   email: example@doamin.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/0xv3r4x      # change to your twitter homepage
+    - https://github.com/0xV3R4X       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
@@ -83,7 +83,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/common/avatar-small.png
 
 # boolean type, the global switch for ToC in posts.
 toc: true
@@ -114,9 +114,6 @@ assets:
     # specify the Jekyll environment, empty means both
     # only works if `assets.self_host.enabled` is 'true'
     env:          # [development|production]
-
-pwa:
-  enabled: true   # the option for PWA feature
 
 paginate: 10
 
