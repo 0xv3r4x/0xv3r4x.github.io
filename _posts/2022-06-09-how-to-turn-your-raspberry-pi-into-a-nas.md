@@ -32,7 +32,7 @@ Before you set up your NAS, you need to configure your Raspberry Pi with the cor
 
 So, take your SD Card, insert it into your adapter, and plug it into your computer.  
 
-Then, using the (Raspberry Pi Imager)[https://www.raspberrypi.com/software/], select the "Raspberry Pi OS Lite (32-bit)" operating system.  This will install a barebones version of the Pi OS without any GUI components or applications.
+Then, using the [Raspberry Pi Imager](https://www.raspberrypi.com/software/), select the "Raspberry Pi OS Lite (32-bit)" operating system.  This will install a barebones version of the Pi OS without any GUI components or applications.
 
 Next, select your SD Card which you wish to write the operating system onto.  Make sure you select the correct device and don't accidentally overwrite something important!
 
