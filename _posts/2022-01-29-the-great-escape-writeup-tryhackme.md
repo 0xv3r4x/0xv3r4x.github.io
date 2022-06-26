@@ -57,7 +57,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 From the above, it shows that the machine is open on ports 22 (ssh) and 80 (web page).  So, I go check out the website.  While I did this, I was running GoBuster in the background to check for any funky directories on the primary site, but everything it tried returned a `200` status code.
 
-![website home page](screenshots/website_home.png)
+![website home page](/assets/posts/20220129/website_home.png)
 
 There wasn't a whole lot to this site (on the face of it at least); just a homepage, a login/sign-up page.  Looking at the hint, I realised that the site may have a "robots.txt" file, and, sure enough, it did!
 
@@ -69,7 +69,7 @@ Disallow: /api/
 
 I then decided to run GoBuster on the `/api` portion of the site, but to no avail.  The *robots.txt* file does indicate another page: `/exif-util`, so I decided to have a look:
 
-![exif-util page](screenshots/exif_util.png)
+![exif-util page](/assets/posts/20220129/exif_util.png)
 
 This appeared to be a file upload for images.  After trying a bunch of file uploads with various formats, I decided to give up on this portion and do some more research.
 
@@ -165,7 +165,7 @@ I then remembered that this section is talking about backups.  Going back to not
 
 I tried looking for various backup files for each of the pages on the site and eventually stumbled across the *.bak* file for exif-util:
 
-![backup file](screenshots/backup_file.png)
+![backup file](/assets/posts/20220129/backup_file.png)
 
 I continued to try some more combos with the urls I found earlier but I didn't get anywhere.
 
