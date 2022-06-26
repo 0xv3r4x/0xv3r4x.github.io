@@ -1,6 +1,6 @@
 ---
 title: Blog Writeup | TryHackMe
-date: 2022-01-12 00:00:00 +/-TTTT
+date: 2022-01-15 00:00:00 +/-TTTT
 categories: [Writeup, TryHackMe]
 tags: [writeup, tryhackme, cve-2019-8943, wordpress, blog, web, medium]
 author:

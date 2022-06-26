@@ -1,6 +1,6 @@
 ---
 title: Cicada 3301 Writeup | TryHackMe
-date: 2022-01-12 00:00:00 +/-TTTT
+date: 2022-01-16 00:00:00 +/-TTTT
 categories: [Writeup, TryHackMe]
 tags: [writeup, tryhackme, cicada3301, security, audio, steganography, cryptography]
 author:
