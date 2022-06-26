@@ -11,7 +11,7 @@ author:
 
 This is my writeup for the HackPark room on TryHackMe.  This room involves bruteforcing a site's login with Hydra, identifying and using a public exploit to gain access and then escalate your privileges.
 
-This is a intermediate room so if you are more of a beginner, then this may be to challenging.  If you are new to Windows exploitation in general, I would recommend attempting the [Steel Mountain](/ctf-writeups/Steel Mountain) or [Alfred](/ctf-writeups/Alfred) rooms.
+This is a intermediate room so if you are more of a beginner, then this may be to challenging.  If you are new to Windows exploitation in general, I would recommend attempting the [Steel Mountain](/posts/steel-mountain-writeup-tryhackme/index.html) or [Alfred](/posts/alfred-writeup-tryhackme/index.html) rooms.
 
 ## How to Access
 

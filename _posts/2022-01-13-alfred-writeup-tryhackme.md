@@ -9,7 +9,7 @@ author:
 
 ## Overview
 
-This is my writeup for the Alfred room on TryHackMe.  This Batman themed room requires you to exploit Jenkins by gaining access through powershell, then escalating your privileges by exploiting Windows authentication tokens.  This is an easy room, so if you are new to Windows exploitation, then this is ideal for you.  Furthermore, if you have completed the Steel Mountain CTF (writeup [here](/Steel%20Mountain/README.md)), then you will be familiar with the techniques used here.
+This is my writeup for the Alfred room on TryHackMe.  This Batman themed room requires you to exploit Jenkins by gaining access through powershell, then escalating your privileges by exploiting Windows authentication tokens.  This is an easy room, so if you are new to Windows exploitation, then this is ideal for you.  Furthermore, if you have completed the Steel Mountain CTF (writeup [here](/posts/steel-mountain-writeup-tryhackme/index.html)), then you will be familiar with the techniques used here.
 
 ## How to Access
 
