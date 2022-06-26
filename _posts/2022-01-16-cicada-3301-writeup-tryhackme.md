@@ -36,15 +36,15 @@ Two files are given as part of the challenge:
 
 Opening Sonic Visualizer and importing the `3301.wav` audio file shows the waveform:
 
-![sonic visualizer](assets/posts/20220116/sonic-visualiser.png)
+![sonic visualizer](/assets/posts/20220116/sonic-visualiser.png)
 
 Listening to the file will not reveal anything special.  To find the solution, add a spectogram:
 
-![adding spectogram](assets/posts/20220116/adding_spectogram.png)
+![adding spectogram](/assets/posts/20220116/adding_spectogram.png)
 
 For some reason I could not scan the QR code in the format above, so I added a white-on-black filter:
 
-![white on black](assets/posts/20220116/white_on_black.png)
+![white on black](/assets/posts/20220116/white_on_black.png)
 
 Scanning the QR code gives the link, which is the answer to the first challenge:
 
@@ -70,7 +70,7 @@ The next task specifies that you need to use the passphrase along with the key t
 
 Using the key and the passphrase with the cipher gives the fully decoded passphrase:
 
-![decode_passphrase](assets/posts/20220116/decode_passphrase.png)
+![decode_passphrase](/assets/posts/20220116/decode_passphrase.png)
 
 ### Gather Metadata
 
@@ -172,7 +172,7 @@ Deciphering the message gives a link:
 
 The link from the previous section redirects to a soundcloud music track, the name of which is the solution to the final challenge.
 
-![the instar emergence](assets/posts/20220116/instar_emergence.png)
+![the instar emergence](/assets/posts/20220116/instar_emergence.png)
 
 This song was published and produced by Cicada 3301 for the real-life challenge.
 

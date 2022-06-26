@@ -238,7 +238,7 @@ The front 8 characters indicate the format of the given file.  For PNG, it is 89
 
 To get the flag I had to upload the image to CyberChef.  I first had to decode the information from the hex format, and then render the iamge using the raw data.
 
-![can you fix it?](screenshots/can_you_fix_it_flag.png)
+![can you fix it?](/assets/posts/20220117/can_you_fix_it_flag.png)
 
 ### Task 11 - Read it
 
@@ -246,11 +246,11 @@ To get the flag I had to upload the image to CyberChef.  I first had to decode t
 
 The hint for this challenge is simply "**reddit**".  A quick Google search for "TryHackMe room reddit" gives the following result:
 
-![read it](screenshots/google_search.png)
+![read it](/assets/posts/20220117/google_search.png)
 
 Navigating to this page gives the flag:
 
-![read it](screenshots/read_it_flag.png)
+![read it](/assets/posts/20220117/read_it_flag.png)
 
 ### Task 12 - Spin my head
 
@@ -264,7 +264,7 @@ The hint for this challenge is **binaryfuck**.
 
 The given code uses the programming language "brainfuck".  I used an online decoder to get the flag.
 
-![what is this](screenshots/what_is_this_flag.png)
+![what is this](/assets/posts/20220117/what_is_this_flag.png)
 
 ### Task 13 - An exclusive
 
@@ -277,7 +277,7 @@ S2: 1010101010101010101010101010101010
 
 Going by the challenge name, I assumed this would be XOR.  Using an online XOR calculator gave me the flag:
 
-![an exclusive](screenshots/an_exclusive_flag.png)
+![an exclusive](/assets/posts/20220117/an_exclusive_flag.png)
 
 ### Task 14 - Binary walk
 
@@ -311,7 +311,7 @@ THM{y0***********u7}
 
 The challenge hint suggested using stegsolve.  Running this with the opened file, I began to cycle through the planes.  Eventually I found the flag (Blue plane phase 1):
 
-![darkness](screenshots/darkness_flag.png)
+![darkness](/assets/posts/20220117/darkness_flag.png)
 
 ### Task 16 - A sounding QR
 
@@ -321,7 +321,7 @@ The challenge hint suggested using stegsolve.  Running this with the opened file
 
 Decoding the QR code revealed a link to a soundcloud track:
 
-![qr decode](screenshots/qr_decode.png)
+![qr decode](/assets/posts/20220117/qr_decode.png)
 
 The music track gives the flag (you might have to slow it down).
 
@@ -336,11 +336,11 @@ The hint for this challenge is the **Wayback machine**.  This is a website that 
 
 Searching for the target website on the WayBack machine and using the target time:
 
-![wayback machine](screenshots/wayback_machine.png)
+![wayback machine](/assets/posts/20220117/wayback_machine.png)
 
 This revealed the layout of the website, giving me the flag:
 
-![dig up the past](screenshots/dig_up_the_past_flag.png)
+![dig up the past](/assets/posts/20220117/dig_up_the_past_flag.png)
 
 ### Task 18 - Uncrackable!
 
@@ -351,7 +351,7 @@ This revealed the layout of the website, giving me the flag:
 
 From the clue word "key" I assumed this would be some key-based cipher.  I tried a few different ones with various keys and eventually found the flag using the Vigenere cipher with the key "THM":
 
-![uncrackable](screenshots/uncrackable_flag.png)
+![uncrackable](/assets/posts/20220117/uncrackable_flag.png)
 
 ### Task 19 - Small bases
 
@@ -361,9 +361,9 @@ From the clue word "key" I assumed this would be some key-based cipher.  I tried
 
 Using the hint (**dec -> hex -> ascii**), I first converted the string to hex and then from hex into textual format:
 
-![dec to hex](screenshots/dec_to_hex.png)
+![dec to hex](/assets/posts/20220117/dec_to_hex.png)
 
-![hex to text](screenshots/hex_to_text.png)
+![hex to text](/assets/posts/20220117/hex_to_text.png)
 
 ### Task 20 - Read the packet
 
@@ -373,11 +373,11 @@ Using the hint (**dec -> hex -> ascii**), I first converted the string to hex an
 
 Using wireshark, I used the filter to find HTTP GET requests:
 
-![filtering](screenshots/filtering.png)
+![filtering](/assets/posts/20220117/filtering.png)
 
 I then followed the HTTP stream and found the flag:
 
-![find me](screenshots/find_me_flag.png)
+![find me](/assets/posts/20220117/find_me_flag.png)
 
 ### Summary and Feedback
 

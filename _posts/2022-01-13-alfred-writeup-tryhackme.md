@@ -45,64 +45,64 @@ Service detection performed. Please report any incorrect results at https://nmap
 
 As you can see, there are two web servers running - one on port 80 and another on port 8080.  The first site is a memorial page for Bruce Wayne with an email: *alfred@wayneenterprises.com*:
 
-![mainpage](assets/posts/20220113/1_mainpage.png)
+![mainpage](/assets/posts/20220113/1_mainpage.png)
 
 The second site is a Jenkins login form:
 
-![login form](assets/posts/20220113/2_login_form.png)
+![login form](/assets/posts/20220113/2_login_form.png)
 
 After trying some default credentials, I was able to login using the **admin:admin** combination.  Looking further into the site, I found a way to execute bash commands on the windows machine (under `/job/project/configure` in the "Build" section).
 
 Firstly, I created a Python HTTP server so that I can upload the powershell script.  I also created a netcat listener to catch the callback.
 
-![http server](assets/posts/20220113/4_python_http_server.png)
+![http server](/assets/posts/20220113/4_python_http_server.png)
 
-![bash commands](assets/posts/20220113/3_execute_bash_commands.png)
+![bash commands](/assets/posts/20220113/3_execute_bash_commands.png)
 
-![netcat callback](assets/posts/20220113/5_netcat.png)
+![netcat callback](/assets/posts/20220113/5_netcat.png)
 
 I found the `user.txt` flag in the `C:\Users\bruce\Desktop` directory:
 
-![user.txt](assets/posts/20220113/6_user_flag.png)
+![user.txt](/assets/posts/20220113/6_user_flag.png)
 
 I then escalated my shell to a meterpreter shell by creating a payload with msfvenom:
 
-![creating exploit](assets/posts/20220113/7_creating_exploit.png)
+![creating exploit](/assets/posts/20220113/7_creating_exploit.png)
 
 I then used the following command, along with a metasploit listener to catch the result:
 
-![more commands](assets/posts/20220113/8_next_command.png)
+![more commands](/assets/posts/20220113/8_next_command.png)
 
 Setting up `multi/handler`:
 
-![metasploit](assets/posts/20220113/9_metasploit_listener.png)
+![metasploit](/assets/posts/20220113/9_metasploit_listener.png)
 
-![executing shell](assets/posts/20220113/10_executing_shell.png)
+![executing shell](/assets/posts/20220113/10_executing_shell.png)
 
 After I executed the exploit, it spawned a meterpreter shell as `alfred\bruce`:
 
-![spawned meterpreter](assets/posts/20220113/11_spawned_meterpreter.png)
+![spawned meterpreter](/assets/posts/20220113/11_spawned_meterpreter.png)
 
 Then, I looked into the privileges of the user using `whoami /priv`:
 
-![enabled privileges](assets/posts/20220113/12_enabled_privileges.png)
+![enabled privileges](/assets/posts/20220113/12_enabled_privileges.png)
 
 As shown above, `SeDebugPrivilege` and `SeImpersonatePrivilege` are enabled.  After loading the incognito module, I listed the available tokens:
  
-![tokens](assets/posts/20220113/13_tokens.png)
+![tokens](/assets/posts/20220113/13_tokens.png)
 
 The `BUILTIN\Administrator` token is available, so I can use this to impersonate the admin:
 
-![nt authority system](assets/posts/20220113/14_nt_authority_system.png)
+![nt authority system](/assets/posts/20220113/14_nt_authority_system.png)
 
 However, even though I have higher privileges, I don't have the permissions of the admin user.  This is due to how Windows handles permissions - it uses the Primary Token of the process instead of the token to identify what the process can/cannot do.
 
 To fix this, I migrated to the process with the correct permissions:
 
-![migrating](assets/posts/20220113/15_migrating.png)
+![migrating](/assets/posts/20220113/15_migrating.png)
 
 Finally, I found the `root.txt` flag in the `C:\Windows\System\config` directory:
 
-![root.txt](assets/posts/20220113/16_root_flag.png)
+![root.txt](/assets/posts/20220113/16_root_flag.png)
 
 And that's it!  All done!
