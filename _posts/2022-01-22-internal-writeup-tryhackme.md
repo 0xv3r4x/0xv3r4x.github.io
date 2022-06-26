@@ -11,7 +11,7 @@ author:
 
 This is my writeup for the Internal room on TryHackMe.  Similar to the Relevant room, this room is not guided, so enumeration is key.  In order to gain root, you must know how to exploit Wordpress and manually enumerate the system once you have gained access.  You then have to exploit an internally hosted Jenkins server leading to a Docker container.
 
-This is a hard room, so if you're a beginner, I would highly recommend trying some other rooms like [Alfred](/posts/alfred-writeup-tryhackme/index.html) and [Mr. Robot](/posts/mr-robot-writeup-tryhackme/index.html) so that you become familiar with the technologies and techniques required to retrieve the flags.
+This is a hard room, so if you're a beginner, I would highly recommend trying some other rooms like [Alfred](/posts/alfred-writeup-tryhackme/index.html) and [Mr. Robot](/posts/mr-robot-tryhackme-writeup/index.html) so that you become familiar with the technologies and techniques required to retrieve the flags.
 
 ## How to Access
 
