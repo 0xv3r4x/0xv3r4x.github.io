@@ -56,31 +56,31 @@ So, we have **three** ports open:
 
 The main page of the website shows an article where **spiderman** is caught robbing a bank:
 
-![mainpage](screenshots/1_mainpage.png)
+![mainpage](/assets/posts/20220118/1_mainpage.png)
 
 Let's see if there is any directories which we can exploit (I use `gobuster` for this):
 
-![gobuster](screenshots/2_gobuster.png)
+![gobuster](/assets/posts/20220118/2_gobuster.png)
 
 So this `gobuster` scan has revealed an `/administrator` directory which leads to a Joomla CMS login:
 
-![joomla](screenshots/3_joomla.png)
+![joomla](/assets/posts/20220118/3_joomla.png)
 
 I did some research and found that the version of Joomla can be found at `http://<ip>/administrator/manifests/files/joomla.xml`.  The version of Joomla being used here is **3.7.0**:
 
-![joomla version](screenshots/4_joomla_version.png)
+![joomla version](/assets/posts/20220118/4_joomla_version.png)
 
 #### Compromising Joomla via SQL Injection
 
 A quick look on searchsploit shows that this version of Joomla is vulnerable to SQL injection.  I did some more research and found this Python script on GitHub: https://github.com/NinjaJc01/joomblah-3/blob/master/joomblah.py.  Downloading and executing this will reveal the hash for the `jonah` user:
 
-![jonah hash](screenshots/5_joomla_sqli.png)
+![jonah hash](/assets/posts/20220118/5_joomla_sqli.png)
 
 #### Cracking Hashes with Hashcat
 
 First, we need to determine the type of hash we are going to crack.  The [hashcat cheatsheet](https://hashcat.net/wiki/doku.php?id=example_hashes) shows that it is a "bcrypt $2\*$, Blowfish (Unix)" hash:
 
-![hash type](screenshots/6_hash_type.png)
+![hash type](/assets/posts/20220118/6_hash_type.png)
 
 I used the following `hashcat` command to crack the hash.  This took me about 10 minutes to crack, so be patient (it may take you longer depending on your machine).
 
@@ -95,53 +95,53 @@ $ hashcat -a 0 -m 3200 hash /usr/share/wordlists/rockyou.txt
 
 We can now login to Joomla as `jonah`:
 
-![logging in](screenshots/7_logged_in.png)
+![logging in](/assets/posts/20220118/7_logged_in.png)
 
 #### Getting a Reverse Shell
 
 In Joomla, you can edit the template files to get a reverse shell.  The article [here](https://www.hackingarticles.in/joomla-reverse-shell/) discusses this in very good detail.  I used the PHP reverse shell from pentest monkey (get it [here](https://github.com/pentestmonkey/php-reverse-shell))
 
-![reverse shell](screenshots/8_reverse_shell.png)
+![reverse shell](/assets/posts/20220118/8_reverse_shell.png)
 
 Make sure to change the IP address and port, and then setup your `netcat` listener to accept the callback:
 
-![netcat callback](screenshots/9_netcat_callback.png)
+![netcat callback](/assets/posts/20220118/9_netcat_callback.png)
 
 You are now logged in as `apache`.  I then upgraded my shell using Python:
 
-![upgrading shell](screenshots/10_upgrading_shell.png)
+![upgrading shell](/assets/posts/20220118/10_upgrading_shell.png)
 
 #### Enumeration, Enumeration, Enumeration
 
 Unfortunately, this machine is setup so that you cannot access `/home/jjameson` or `/root` to get either of the flags.  So we need to enumerate the machine more.  For this, I uploaded linPEAS:
 
-![uploading linPEAS](screenshots/11_uploading_linpeas.png)
+![uploading linPEAS](/assets/posts/20220118/11_uploading_linpeas.png)
 
 Make sure to use `chmod +x` so that you can execute the `linpeas.sh` file.  When you run it and go through the output, you will notice that there is a `configuration.php` file in the `/var/www/html` directory.  This contains a password which can be used to SSH into the machine as the `jjameson` user:
 
-![configuration.php](screenshots/12_configuration_php)
+![configuration.php](/assets/posts/20220118/12_configuration_php)
 
 #### Accessing the Machine
 
 Once you're logged in as the `jjameson` user, you'll be able to retrieve the `user.txt` flag in their `/home` directory:
 
-![user.txt](screenshots/13_user_flag.png)
+![user.txt](/assets/posts/20220118/13_user_flag.png)
 
 #### Privilege Escalation
 
 Running `sudo -l` as `jjameson` shows that we can run `yum` without a password (using `sudo`):
 
-![sudo -l](screenshots/14_sudo_-l.png)
+![sudo -l](/assets/posts/20220118/14_sudo_-l.png)
 
 Looking online, you'll notice that there is a GTFO bin for `yum` using `sudo` (get it [here](https://gtfobins.github.io/gtfobins/yum/)).  This means that we can spawn an interactive `root` shell by loading a custom plugin.
 
 To do this, use the following commands:
 
-![yum privesc](screenshots/15_yum_privesc.png)
+![yum privesc](/assets/posts/20220118/15_yum_privesc.png)
 
 As you can see, when you run the final command, it spawns an interactive shell as `root`.  From this, you're able to get the `root.txt` flag:
 
-![root.txt](screenshots/16_root_flag)
+![root.txt](/assets/posts/20220118/16_root_flag)
 
 And that's it!  All done!
 
