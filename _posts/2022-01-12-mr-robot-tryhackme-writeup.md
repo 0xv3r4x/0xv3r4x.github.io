@@ -7,8 +7,6 @@ author:
   name: v3r4x
 ---
 
-# Mr Robot CTF Writeup
-
 ## CTF Overview
 
 Hello there!  This is my writeup for the Mr.Robot CTF virtual machine.  This challenge was a lot of fun, especially if you enjoy the TV show.  I would only recommend using this guide if you are stuck or if you wish to learn other ways of solving the box.

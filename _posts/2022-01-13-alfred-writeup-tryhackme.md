@@ -1,5 +1,3 @@
-# Alfred Writeup
-
 ---
 title: Alfred Writeup | TryHackMe
 date: 2022-01-13 00:00:00 +/-TTTT
