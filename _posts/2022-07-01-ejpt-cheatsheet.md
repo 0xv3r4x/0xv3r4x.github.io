@@ -20,7 +20,7 @@ Furthermore, I would also encourage you to seek out other content creators to im
 - [TheCyberMentor](https://www.youtube.com/c/TheCyberMentor) - outstanding course material for beginners (linux fundamentals, penetration testing, OSINT, privilege escalation, etc.).
 - [David Bombal](https://www.youtube.com/c/DavidBombal) - insightful interviews with infosec professionals and networking tutorials.
 - [NetworkChuck](https://www.youtube.com/c/NetworkChuck) - great beginner tutorials on everything from Python to networking, plus some portfolio projects.
-- [IpSec](https://www.youtube.com/c/ippsec) - mainly video writeups on HackTheBox machines but with incredibly high-quality explanations
+- [ippsec](https://www.youtube.com/c/ippsec) - mainly video writeups on HackTheBox machines but with incredibly high-quality explanations
 - [CryptoCat](https://www.youtube.com/c/CryptoCat23) - vast array of video write-ups for CTF challenges suitable for all skill levels
 
 Before continuing, it is worth mentioning that my notes **do not** contain details about the labs or the exam - for obvious reasons.  In addition, INE update their courses fairly frequently so some of the information may be outdated after this is published.  I will do my utmost to update them, but I am not planning on a complete overhaul should the course be changed significantly.  Finally, these notes are also available on my [Github](https://github.com/0xv3r4x/ejpt_cheatsheet) if you want to create your own copy.
