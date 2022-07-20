@@ -9,7 +9,7 @@ author:
 
 ## Overview
 
-Welcome to my write-up for the [Anonymous room](https://tryhackme.com/room/anonymous) on [TryHackMe](https://tryhackme.com).  Unlike other rooms, this has very little hand-holding, so you must have a good knowledge base and methodology before attempting this room.  However, the room is of easy difficulty, so anyone can attempt to hack this box.  In preparation, I recommend you consult my other write-ups on [Kenobi](/posts/kenobi-writeup-tryhackme/) and [Mr Robot](/posts/mr-robot-tryhackme-writeup/).
+Welcome to my write-up for the [Brooklyn Nine Nine room](https://tryhackme.com/room/brooklynninenine) on [TryHackMe](https://tryhackme.com).  Unlike other rooms, this has very little hand-holding, so you must have a good knowledge base and methodology before attempting this room.  However, the room is of easy difficulty, so anyone can attempt to hack this box.  In preparation, I recommend you consult my other write-ups on [Kenobi](/posts/kenobi-writeup-tryhackme/) and [Mr Robot](/posts/anonymous-writeup-tryhackme/).
 
 In order to complete this room, we must enumerate the target machine's FTP server and website, bruteforce SSH credentials using Hydra in order to gain initial access, and escalate our privileges via misconfigured binaries.
 
